@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/FormHeader.scss';
+import '../../assets/styles/FormHeader.scss';
 
 const FormHeader: React.FC<{ title: string }> = ({ title }): React.ReactElement => {
     return (
