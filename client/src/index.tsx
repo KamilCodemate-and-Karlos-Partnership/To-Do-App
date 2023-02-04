@@ -7,7 +7,7 @@ import './index.scss';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
 <div className='app-container'>
-    {/* <SignUpForm /> */}
-    <SignInForm />
+    <SignUpForm />
+    {/* <SignInForm /> */}
 </div>
 );

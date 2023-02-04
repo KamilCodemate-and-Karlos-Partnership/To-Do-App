@@ -9,7 +9,7 @@ import '../assets/styles/SignUpForm.scss';
 const SignInForm: React.FC<{}> = (): React.ReactElement => {
   return (
     <div className="SignInForm">
-      <FormContainer>
+      {/* <FormContainer>
       <>
         <FormHeader title="Sign In" />
         <div className="form-main">
@@ -32,7 +32,7 @@ const SignInForm: React.FC<{}> = (): React.ReactElement => {
           </FormSidebar>
         </div>
       </>
-      </FormContainer>
+      </FormContainer> */}
     </div>
   );
 };
