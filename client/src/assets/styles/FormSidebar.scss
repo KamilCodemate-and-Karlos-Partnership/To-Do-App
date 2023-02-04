@@ -1,0 +1,31 @@
+.form-sidebar {
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+
+    span {
+        color: #96E6B3;
+    }
+
+    button {
+        background: none;
+        color: white;
+        border: white 1px solid;
+        border-radius: 4px;
+        padding: 10px 75px;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+}
