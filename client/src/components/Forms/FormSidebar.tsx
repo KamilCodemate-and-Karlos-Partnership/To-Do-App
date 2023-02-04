@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import '../../assets/styles/FormSidebar.scss';
 
-const FormSidebar: React.FC<{ img: string, children: ReactNode }> = ({ img, children }): React.ReactElement => {
+const FormSidebar: React.FC<{ img: string, children: React.ReactNode }> = ({ img, children }): React.ReactElement => {
   const sidebarStyle: React.CSSProperties = {
     backgroundImage: `url(${img})`,
   };
