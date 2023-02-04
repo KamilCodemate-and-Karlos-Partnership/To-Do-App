@@ -12,32 +12,38 @@
         height: 100%;
         border-radius: 20px;
 
-        form {
+        .form-collapse {
             width: 50%;
-            padding: 2rem;
             display: flex;
-            flex-direction: column;
-            row-gap: 15px;
 
-            input {
-                border: none;
-                background-color: #f7f7f7;
-                padding: 10px;
-
-                &:focus {
-                    outline: none;
+            form {
+                width: 100%;
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                row-gap: 15px;
+                
+                input {
+                    border: none;
+                    background-color: #f7f7f7;
+                    padding: 10px;
+                    
+                    &:focus {
+                        outline: none;
+                    }
                 }
-            }
-
-            input[type="submit"] {
-                background-color: #DA3E52;
-                color: white;
-                padding: 15px;
-                transition: all 0.3s;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: #c4273b;
+                
+                input[type="submit"] {
+                    background-color: #DA3E52;
+                    color: white;
+                    padding: 15px;
+                    transition: all 0.3s;
+                    cursor: pointer;
+                    
+                    &:hover {
+                        background-color: #c4273b;
+                    }
                 }
             }
         }
