@@ -2,7 +2,11 @@ import express from 'express';
 
 const app = express();
 
-app.get('/api', (req, res) => {
-  res.json({ status: 'OK', data: 'randomData' });
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+app.post('/api/users', (req, res) => {
+  const userData = req.body;
+  console.log(userData);
 });
 app.listen(5000);
