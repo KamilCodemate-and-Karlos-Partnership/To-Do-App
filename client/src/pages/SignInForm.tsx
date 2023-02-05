@@ -4,6 +4,7 @@ import FormContainer from '../components/Forms/FormContainer';
 import FormContent from '../components/Forms/FormContent';
 import FormSidebar from '../components/Forms/FormSidebar';
 import signinimage from '../assets/img/signinimage.jpg';
+import { Link } from 'react-router-dom';
 import '../assets/styles/SignUpForm.scss';
 
 const SignInForm: React.FC<{}> = (): React.ReactElement => {
@@ -49,7 +50,9 @@ const SignInForm: React.FC<{}> = (): React.ReactElement => {
               <p>
                 You're not <span>sign up</span> yet?
               </p>
-              <button>Sign Up</button>
+              <Link to={"/register"}>
+                Sign Up
+              </Link>
             </FormSidebar>
           </div>
         </>
