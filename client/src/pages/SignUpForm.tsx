@@ -5,6 +5,7 @@ import FormContainer from '../components/Forms/FormContainer';
 import FormContent from '../components/Forms/FormContent';
 import FormSidebar from '../components/Forms/FormSidebar';
 import signupimage from '../assets/img/signupimage.jpg';
+import { Link } from 'react-router-dom';
 import '../assets/styles/SignUpForm.scss';
 
 const SignUpForm: React.FC<{}> = (): React.ReactElement => {
@@ -60,7 +61,9 @@ const SignUpForm: React.FC<{}> = (): React.ReactElement => {
               <p>
                 I'm already a <span>member</span>!
               </p>
-              <button>Sign In</button>
+              <Link to={"/login"}>
+                Sign In
+              </Link>
             </FormSidebar>
           </div>
         </>
