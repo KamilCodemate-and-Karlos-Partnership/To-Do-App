@@ -43,11 +43,11 @@ const SignUpForm: React.FC<{}> = (): React.ReactElement => {
     }
   };
 
-  useEffect(() => {
-    if (!error && loading) {
-      navigate('/login');
-    }
-  });
+  // useEffect(() => {
+  //   if (!error && loading) {
+  //     navigate('/login');
+  //   }
+  // });
 
   return (
     <div className='SignUpForm'>
