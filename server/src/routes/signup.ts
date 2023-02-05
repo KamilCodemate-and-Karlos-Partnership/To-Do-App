@@ -1,13 +1,9 @@
 import express from 'express';
-
 import bcrypt from 'bcrypt';
 import uniqid from 'uniqid';
-import { databaseDataPost } from './database';
-const app = express();
-import signupRouter from './routes/signup';
+import { databaseDataPost } from '../database';
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+const signUpRouter = express.Router();
 
 interface UserData {
   id: string;
@@ -18,7 +14,7 @@ interface UserData {
 
 let user: UserData;
 
-app.post('/api/signup', async (req, res) => {
+signUpRouter.post('/', async (req, res) => {
   console.log('dziala');
   try {
     const userCheckData: Omit<UserData, 'id'> = req.body;
@@ -57,4 +53,4 @@ app.post('/api/signup', async (req, res) => {
   }
 });
 
-app.listen(5000);
+export default signUpRouter;

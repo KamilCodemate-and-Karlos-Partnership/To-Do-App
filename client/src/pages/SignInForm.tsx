@@ -27,26 +27,22 @@ const SignInForm: React.FC<{}> = (): React.ReactElement => {
   };
 
   return (
-    <div className="SignInForm">
+    <div className='SignInForm'>
       <FormContainer>
         <>
-          <FormHeader title="Sign In" />
-          <div className="form-main">
+          <FormHeader title='Sign In' />
+          <div className='form-main'>
             <FormContent>
               <form onSubmit={handleSubmit}>
-                <div className="form-main-title">
+                <div className='form-main-title'>
                   <h2>Hello!</h2>
                   <p>Please sign in to continue</p>
                 </div>
                 <label>Email Address</label>
-                <input type="email" name="email" onChange={handleChange} />
+                <input type='email' name='email' onChange={handleChange} />
                 <label>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                />
-                <input type="submit" value="Sign In" />
+                <input type='password' name='password' onChange={handleChange} />
+                <input type='submit' value='Sign In' />
               </form>
             </FormContent>
             <FormSidebar img={signinimage}>
