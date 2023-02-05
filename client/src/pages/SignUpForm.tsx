@@ -33,7 +33,7 @@ const SignUpForm: React.FC<{}> = (): React.ReactElement => {
     e.preventDefault();
     // setError(false);
     setLoading(true);
-    
+
     try {
       await axios.post('/api/signup', inputValues);
     } catch (err: any) {
@@ -77,9 +77,7 @@ const SignUpForm: React.FC<{}> = (): React.ReactElement => {
               <p>
                 I'm already a <span>member</span>!
               </p>
-              <Link to={"/login"}>
-                Sign In
-              </Link>
+              <Link to={'/login'}>Sign In</Link>
             </FormSidebar>
           </div>
         </>
