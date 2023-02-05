@@ -4,18 +4,21 @@ import FormHeader from '../components/Forms/FormHeader';
 import FormContainer from '../components/Forms/FormContainer';
 import FormContent from '../components/Forms/FormContent';
 import FormSidebar from '../components/Forms/FormSidebar';
+import DisplayError from '../services/utils/DisplayError';
 import signupimage from '../assets/img/signupimage.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../assets/styles/SignUpForm.scss';
 
 const SignUpForm: React.FC<{}> = (): React.ReactElement => {
   const [inputValues, setInputValues] = useState({
-    fullName: '',
+    username: '',
     email: '',
     password: '',
     passwordConfirm: '',
   });
   const [error, setError] = useState<any | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValues({
@@ -28,8 +31,9 @@ const SignUpForm: React.FC<{}> = (): React.ReactElement => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<any> => {
     e.preventDefault();
-
-    console.log('Handle Submit');
+    // setError(false);
+    setLoading(true);
+    
     try {
       await axios.post('/api/signup', inputValues);
     } catch (err: any) {
@@ -39,9 +43,11 @@ const SignUpForm: React.FC<{}> = (): React.ReactElement => {
     }
   };
 
-  useEffect(() => {
-    if (error) console.log(error);
-  }, [error]);
+  // useEffect(() => {
+  //   if (!error && loading) {
+  //     navigate('/login');
+  //   }
+  // });
 
   return (
     <div className='SignUpForm'>
@@ -54,9 +60,10 @@ const SignUpForm: React.FC<{}> = (): React.ReactElement => {
                 <div className='form-main-title'>
                   <h2>Hello!</h2>
                   <p>Please sign up to continue</p>
+                  {error ? <DisplayError content={error} /> : null}
                 </div>
-                <label>Full Name</label>
-                <input type='text' name='fullName' onChange={handleChange} />
+                <label>Username</label>
+                <input type='text' name='username' onChange={handleChange} />
                 <label>Email Address</label>
                 <input type='email' name='email' onChange={handleChange} />
                 <label>Password</label>

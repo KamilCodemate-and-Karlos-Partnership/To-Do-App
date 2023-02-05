@@ -7,10 +7,11 @@ const signUpRouter = express.Router();
 
 interface UserData {
   id: string;
-  fullName: string;
+  username: string;
   email: string;
   password: Promise<string> | string;
 }
+
 const emailRegex =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -19,18 +20,23 @@ let user: UserData;
 signUpRouter.post('/', async (req, res) => {
   try {
     const userCheckData: Omit<UserData, 'id'> = req.body;
-    if (!userCheckData.fullName || !userCheckData.email || !userCheckData.password) {
+    if (!userCheckData.username || !userCheckData.email || !userCheckData.password) {
       return res.status(422).json({ success: false, errorContent: 'Fill in all forms' });
     }
     if (typeof userCheckData.password === 'string' && userCheckData.password.length < 8) {
       return res.status(422).json({ success: false, errorContent: 'Password should contain at least 8 signs' });
     }
-
     if (userCheckData.password !== req.body.passwordConfirm) {
       return res.status(400).json({ success: false, errorContent: 'Passwords are not the same' });
     }
     if (!emailRegex.test(userCheckData.email)) {
       return res.status(400).json({ success: false, errorContent: 'Incorrect email adress' });
+    }
+    if (typeof userCheckData.username !== 'string' || userCheckData.username.length < 3 || userCheckData.username.length > 24) {
+      return res.status(422).json({ success: false, errorContent: 'Username should have a length between 3 and 24 characters' });
+    }
+    if (/^\d/.test(userCheckData.username)) {
+      return res.status(422).json({ success: false, errorContent: 'Username cannot start with a digit' });
     }
   } catch (err) {
     return res.status(500).json({ success: false, errorContent: 'Something went wrong' });
@@ -40,12 +46,12 @@ signUpRouter.post('/', async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     user = {
       id: uniqid(),
-      fullName: req.body.fullName,
+      username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
     };
 
-    const query = `INSERT INTO users (id, fullname, email, password) VALUES ('${user.id}', '${user.fullName}', '${user.email}', '${user.password}')`;
+    const query = `INSERT INTO users (id, username, email, password) VALUES ('${user.id}', '${user.username}', '${user.email}', '${user.password}')`;
     let result;
     databaseDataPost(query)
       .then((data: any) => {
