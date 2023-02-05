@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import FormHeader from '../components/Forms/FormHeader';
 import FormContainer from '../components/Forms/FormContainer';
@@ -14,6 +14,7 @@ const SignUpForm: React.FC<{}> = (): React.ReactElement => {
     password: '',
     passwordConfirm: '',
   });
+  const [error, setError] = useState<any | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValues({
@@ -28,10 +29,18 @@ const SignUpForm: React.FC<{}> = (): React.ReactElement => {
     e.preventDefault();
 
     console.log('Handle Submit');
-
-    const response = await axios.post('/api/signup', inputValues);
-    console.log(response.data);
+    try {
+      await axios.post('/api/signup', inputValues);
+    } catch (err: any) {
+      if (err.response.data) {
+        setError(err.response.data.errorContent);
+      } else setError('Something went wrong');
+    }
   };
+
+  useEffect(() => {
+    if (error) console.log(error);
+  }, [error]);
 
   return (
     <div className='SignUpForm'>
