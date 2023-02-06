@@ -51,6 +51,12 @@ signUpRouter.post('/', async (req, res) => {
       password: hashedPassword,
     };
 
+    const emailControlQuery = `SELECT email FROM users WHERE email = '${user.email}'`;
+    const controlEmailData = await databaseDataPost(emailControlQuery);
+    if (controlEmailData.length > 0) {
+      return res.status(500).json({ success: false, errorContent: 'This email already exists' });
+    }
+
     const query = `INSERT INTO users (id, username, email, password) VALUES ('${user.id}', '${user.username}', '${user.email}', '${user.password}')`;
     let result;
     databaseDataPost(query)
