@@ -7,12 +7,7 @@ const connection = mysql.createPool({
   password: '',
 });
 
-const databaseDataGet = (query: string): Promise<Object> => {
-  return new Promise((resolve, reject) => {
-    resolve({});
-  });
-};
-const databaseDataPost = (query: string): Promise<Object> => {
+const databaseDataPost = (query: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     try {
       connection.query(query, (err, result) => {

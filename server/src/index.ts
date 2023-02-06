@@ -5,18 +5,11 @@ import express from 'express';
 // import { databaseDataPost } from './database';
 const app = express();
 import signupRouter from './routes/signup';
-
+import loginRouter from './routes/login';
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-interface UserData {
-  id: string;
-  username: string;
-  email: string;
-  password: Promise<string> | string;
-}
-
-let user: UserData;
 app.use('/api/signup', signupRouter);
+app.use('/api/login', loginRouter);
 
 app.listen(5000);

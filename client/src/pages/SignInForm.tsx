@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import FormHeader from '../components/Forms/FormHeader';
 import FormContainer from '../components/Forms/FormContainer';
 import FormContent from '../components/Forms/FormContent';
@@ -12,6 +13,7 @@ const SignInForm: React.FC<{}> = (): React.ReactElement => {
     email: '',
     password: '',
   });
+  const [error, setError] = useState<any | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValues({
@@ -19,13 +21,24 @@ const SignInForm: React.FC<{}> = (): React.ReactElement => {
       [e.target.name]: e.target.value,
     });
     e.preventDefault();
-    console.log([e.target.name], e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<any> => {
     e.preventDefault();
-    console.log('Handle Submit');
+
+    try {
+      const response = await axios.post('/api/login', inputValues);
+      console.log(response);
+    } catch (err: any) {
+      if (err.response.data) {
+        setError(err.response.data.errorContent);
+      } else setError('Something went wrong');
+    }
   };
+
+  useEffect(() => {
+    if (error) console.log(error);
+  }, [error]);
 
   return (
     <div className='SignInForm'>
@@ -50,9 +63,7 @@ const SignInForm: React.FC<{}> = (): React.ReactElement => {
               <p>
                 You're not <span>sign up</span> yet?
               </p>
-              <Link to={"/register"}>
-                Sign Up
-              </Link>
+              <Link to={'/register'}>Sign Up</Link>
             </FormSidebar>
           </div>
         </>
