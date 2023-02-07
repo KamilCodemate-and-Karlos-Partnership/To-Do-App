@@ -14,8 +14,8 @@ root.render(
       <Routes>
         <Route path="/login" element={<SignInForm />} />
         <Route path="/register" element={<SignUpForm />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
-      <HomePage />
     </div>
   </BrowserRouter>
 );
