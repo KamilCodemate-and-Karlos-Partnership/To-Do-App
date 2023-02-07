@@ -5,6 +5,8 @@ import SignInForm from './pages/SignInForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.scss';
 
+import HomePage from './pages/HomePage';
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <BrowserRouter>
@@ -13,6 +15,7 @@ root.render(
         <Route path="/login" element={<SignInForm />} />
         <Route path="/register" element={<SignUpForm />} />
       </Routes>
+      <HomePage />
     </div>
   </BrowserRouter>
 );

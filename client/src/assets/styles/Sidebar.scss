@@ -1,0 +1,37 @@
+.Sidebar {
+    width: 20vw;
+    min-height: 100vh;
+    background-color: #272932;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 1rem;
+
+    .sidebar-logo {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+
+        p {
+            font-weight: 800;
+            font-size: x-large;
+        }
+
+        img {
+            width: 50px;
+            height: auto;
+        }
+    }
+
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+
+        .sc-link {
+            text-decoration: none;
+            color: whitesmoke;
+            padding: 1rem;
+        }
+    }
+}
