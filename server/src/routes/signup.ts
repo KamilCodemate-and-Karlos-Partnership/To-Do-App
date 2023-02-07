@@ -53,7 +53,7 @@ signUpRouter.post('/', async (req, res) => {
     const controlEmailQuery = `SELECT email FROM users WHERE email = '${user.email}'`;
     const controlData = await databaseDataPost(controlEmailQuery);
 
-    if (databaseDataPost.length > 0) {
+    if (controlData.length > 0) {
       return res.status(409).json({ success: false, errorContent: 'This email already exists' });
     }
 
