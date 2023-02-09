@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../assets/styles/Sidebar.scss';
 import logo from '../../assets/img/logo.svg';
-import { FcCalendar, FcList, FcMenu, FcHighPriority, FcSettings, FcPlanner } from 'react-icons/fc';
+import { FcMenu, FcInspection, FcOpenedFolder, FcHighPriority, FcSettings } from 'react-icons/fc';
 
 const Sidebar: React.FC<{}> = (): React.ReactElement => {
   return (
@@ -13,20 +13,16 @@ const Sidebar: React.FC<{}> = (): React.ReactElement => {
         <div className="sidebar-content">
             <div className="sidebar-content-links">
                 <a className='sc-link' href="/home">
-                    <FcPlanner />
-                    <span className='sc-name'>My day</span>
-                </a>
-                <a className='sc-link' href="/home">
-                    <FcCalendar />
-                    <span className='sc-name'>Calendar</span>
-                </a>
-                <a className='sc-link' href="/home">
-                    <FcList />
-                    <span className='sc-name'>All my tasks</span>
+                    <FcInspection />
+                    <span className='sc-name'>All tasks</span>
                 </a>
                 <a className='sc-link' href="/home">
                     <FcHighPriority />
                     <span className='sc-name'>Important tasks</span>
+                </a>
+                <a className='sc-link' href="/home">
+                    <FcOpenedFolder />
+                    <span className='sc-name'>Sets</span>
                 </a>
             </div>
             <div className="sidebar-content-footer">
@@ -39,5 +35,6 @@ const Sidebar: React.FC<{}> = (): React.ReactElement => {
     </div>
   )
 }
+
 
 export default Sidebar

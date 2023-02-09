@@ -49,9 +49,21 @@
         display: flex;
         column-gap: 1rem;
         transition: all 0.5s;
+        position: relative;
 
-        &:hover {
-            transform: scale(1.05);
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width .3s;
+        }
+
+        &:hover::after {
+            width: calc(100% - 5rem);
         }
     }
 }
