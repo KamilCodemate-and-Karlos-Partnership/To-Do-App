@@ -26,3 +26,4 @@
 
 ###server
 /server/node_modules 
+# Secrets (avaible for easy launch) /server/.env

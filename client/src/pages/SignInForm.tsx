@@ -5,10 +5,12 @@ import FormContainer from '../components/Forms/FormContainer';
 import FormContent from '../components/Forms/FormContent';
 import FormSidebar from '../components/Forms/FormSidebar';
 import signinimage from '../assets/img/signinimage.jpg';
-import { Link } from 'react-router-dom';
+import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
+
 import '../assets/styles/SignUpForm.scss';
 
 const SignInForm: React.FC<{}> = (): React.ReactElement => {
+  const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({
     email: '',
     password: '',
@@ -28,7 +30,10 @@ const SignInForm: React.FC<{}> = (): React.ReactElement => {
 
     try {
       const response = await axios.post('/api/login', inputValues);
-      console.log(response);
+      if (response.data.success) {
+        localStorage.setItem('authToken', response.data.authorizationToken);
+        navigate('/home');
+      }
     } catch (err: any) {
       if (err.response.data) {
         setError(err.response.data.errorContent);
