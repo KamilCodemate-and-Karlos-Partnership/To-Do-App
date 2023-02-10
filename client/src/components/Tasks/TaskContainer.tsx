@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import TaskForm from './TaskForm';
 import Task from './Task';
 import axios from 'axios';
 import '../../assets/styles/HomePage.scss';
@@ -25,6 +26,71 @@ const TaskContainer: React.FC<{}> = (): React.ReactElement => {
       important: false,
       subtasks: ['dust', 'vacuum the floor', 'clan the table'],
     },
+    {
+      id: uniqid(),
+      title: 'Clean the room',
+      description: 'I have to clean my room',
+      until: new Date('February 19, 2023 13:00:00'),
+      important: false,
+      subtasks: ['dust', 'vacuum the floor', 'clan the table'],
+    },
+    {
+      id: uniqid(),
+      title: 'Clean the room',
+      description: 'I have to clean my room',
+      until: new Date('February 19, 2023 13:00:00'),
+      important: false,
+      subtasks: ['dust', 'vacuum the floor', 'clan the table'],
+    },
+    {
+      id: uniqid(),
+      title: 'Clean the room',
+      description: 'I have to clean my room',
+      until: new Date('February 19, 2023 13:00:00'),
+      important: false,
+      subtasks: ['dust', 'vacuum the floor', 'clan the table'],
+    },
+    {
+      id: uniqid(),
+      title: 'Clean the room',
+      description: 'I have to clean my room',
+      until: new Date('February 19, 2023 13:00:00'),
+      important: false,
+      subtasks: ['dust', 'vacuum the floor', 'clan the table'],
+    },
+    {
+      id: uniqid(),
+      title: 'Clean the room',
+      description: 'I have to clean my room',
+      until: new Date('February 19, 2023 13:00:00'),
+      important: false,
+      subtasks: ['dust', 'vacuum the floor', 'clan the table'],
+    },
+    {
+      id: uniqid(),
+      title: 'Clean the room',
+      description: 'I have to clean my room',
+      until: new Date('February 19, 2023 13:00:00'),
+      important: false,
+      subtasks: ['dust', 'vacuum the floor', 'clan the table'],
+    },
+    {
+      id: uniqid(),
+      title: 'Clean the room',
+      description: 'I have to clean my room',
+      until: new Date('February 19, 2023 13:00:00'),
+      important: false,
+      subtasks: ['dust', 'vacuum the floor', 'clan the table'],
+    },
+    {
+      id: uniqid(),
+      title: 'Clean the room',
+      description: 'I have to clean my room',
+      until: new Date('February 19, 2023 13:00:00'),
+      important: false,
+      subtasks: ['dust', 'vacuum the floor', 'clan the table'],
+    },
+   
   ]);
 
   const handleAddTask = (e: React.FormEvent<HTMLInputElement>) => {
@@ -51,7 +117,12 @@ const TaskContainer: React.FC<{}> = (): React.ReactElement => {
   const Tasks = taskData?.map((element) => {
     return <Task taskData={element} />;
   });
-  return <div className='task-container'>{Tasks}</div>;
+  return (
+    <div className='task-container'>
+      <TaskForm />
+      {Tasks}
+    </div>
+  );
 };
 
 export default TaskContainer;
