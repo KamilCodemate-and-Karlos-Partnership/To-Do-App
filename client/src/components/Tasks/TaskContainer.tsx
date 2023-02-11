@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import TaskForm from './TaskForm';
+// import TaskForm from './TaskForm';
 import Task from './Task';
 import axios from 'axios';
 import '../../assets/styles/HomePage.scss';
 import '../../assets/styles/TaskContainer.scss';
 import uniqid from 'uniqid';
+import TaskPanelContainer from './TaskPanelContainer';
 
 interface TaskDataStruture {
   id: string;
@@ -90,7 +91,6 @@ const TaskContainer: React.FC<{}> = (): React.ReactElement => {
       important: false,
       subtasks: ['dust', 'vacuum the floor', 'clan the table'],
     },
-   
   ]);
 
   const handleAddTask = (e: React.FormEvent<HTMLInputElement>) => {
@@ -100,7 +100,7 @@ const TaskContainer: React.FC<{}> = (): React.ReactElement => {
     // const until = new Date(e.target.until.value);
     // const important = e.target.important.checked;
     // const subtasks = e.target.subtasks.value.split(',').map(subtask => subtask.trim());
-  
+
     // modifyTasks(prevTasks => [
     //   ...prevTasks,
     //   {
@@ -113,13 +113,13 @@ const TaskContainer: React.FC<{}> = (): React.ReactElement => {
     //   },
     // ]);
   };
- 
+
   const Tasks = taskData?.map((element) => {
     return <Task taskData={element} />;
   });
   return (
     <div className='task-container'>
-      <TaskForm />
+      <TaskPanelContainer />
       {Tasks}
     </div>
   );

@@ -8,6 +8,10 @@ const HomePage: React.FC<{}> = (): React.ReactElement => {
   const navigate: NavigateFunction = useNavigate();
   const authorizationToken = localStorage.getItem('authToken');
   // console.log(authorizationToken);
+
+  const handleFormSwitch = (e: EventTarget) => {
+    //
+  };
   useEffect(() => {
     const autoGetRequest = async () => {
       try {
@@ -31,7 +35,7 @@ const HomePage: React.FC<{}> = (): React.ReactElement => {
 
   return (
     <div className='HomePage'>
-      <Sidebar />
+      <Sidebar handleChildrenClick={handleFormSwitch} />
       <TaskContainer />
     </div>
   );
