@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Sidebar from '../components/Sidebar/Sidebar';
+import TaskContainer from '../components/Tasks/TaskContainer';
 import axios from 'axios';
 import '../assets/styles/HomePage.scss';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
@@ -31,6 +32,7 @@ const HomePage: React.FC<{}> = (): React.ReactElement => {
   return (
     <div className='HomePage'>
       <Sidebar />
+      <TaskContainer />
     </div>
   );
 };
