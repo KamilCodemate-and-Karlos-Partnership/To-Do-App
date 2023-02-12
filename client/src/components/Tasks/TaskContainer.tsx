@@ -7,6 +7,13 @@ import '../../assets/styles/TaskContainer.scss';
 import uniqid from 'uniqid';
 import TaskPanelContainer from './TaskPanelContainer';
 
+enum PanelType {
+  hidden,
+  normalTask,
+  importantTask,
+  set,
+}
+
 interface TaskDataStruture {
   id: string;
   title: string;
@@ -16,7 +23,12 @@ interface TaskDataStruture {
   subtasks: Array<string> | null;
 }
 
-const TaskContainer: React.FC<{}> = (): React.ReactElement => {
+interface TaskContainerProps {
+  childrenSwitch: boolean;
+  childrenSwitchType: PanelType;
+}
+
+const TaskContainer: React.FC<TaskContainerProps> = ({ childrenSwitch, childrenSwitchType }) : React.ReactElement => {
   // const [taskData, modifyTasks] = useState<null | Array<object>>([]);
   const [taskData, modifyTasks] = useState<null | Array<TaskDataStruture>>([
     {
@@ -117,9 +129,10 @@ const TaskContainer: React.FC<{}> = (): React.ReactElement => {
   const Tasks = taskData?.map((element) => {
     return <Task taskData={element} />;
   });
+
   return (
     <div className='task-container'>
-      <TaskPanelContainer />
+      <TaskPanelContainer childrenSwitch={childrenSwitch} childrenSwitchType={childrenSwitchType} />
       {Tasks}
     </div>
   );

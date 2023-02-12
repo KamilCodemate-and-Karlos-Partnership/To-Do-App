@@ -1,17 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar/Sidebar';
 import TaskContainer from '../components/Tasks/TaskContainer';
 import axios from 'axios';
 import '../assets/styles/HomePage.scss';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+
+enum PanelType {
+  hidden,
+  normalTask,
+  importantTask,
+  set,
+}
+
 const HomePage: React.FC<{}> = (): React.ReactElement => {
   const navigate: NavigateFunction = useNavigate();
   const authorizationToken = localStorage.getItem('authToken');
   // console.log(authorizationToken);
+  
+  const [click, setClick] = useState<boolean>(false);
+  const [formType, setFormType] = useState<PanelType>(PanelType.hidden);
 
-  const handleFormSwitch = (e: EventTarget) => {
-    //
+  const handleFormSwitch = (e: EventTarget, typeName: PanelType) => {
+    setClick(!click);
+    setFormType(typeName);
   };
+  
   useEffect(() => {
     const autoGetRequest = async () => {
       try {
@@ -36,7 +49,7 @@ const HomePage: React.FC<{}> = (): React.ReactElement => {
   return (
     <div className='HomePage'>
       <Sidebar handleChildrenClick={handleFormSwitch} />
-      <TaskContainer />
+      <TaskContainer childrenSwitch={click} childrenSwitchType={formType} />
     </div>
   );
 };

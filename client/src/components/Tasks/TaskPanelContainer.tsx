@@ -20,18 +20,34 @@ enum PanelType {
   set,
 }
 const choosePicker = (panelType: PanelType): React.ReactElement | null => {
-  switch (panelType) {
+   switch (panelType) {
     case 0:
       return null;
     case 1:
       return <TaskForm />;
-    /// Ramaining forms
+    case 2:
+      return <TaskForm />;
+    case 3:
+      return <TaskForm />
     default:
       return null;
   }
 };
-const AddTaskPanel: React.FC<{}> = (): React.ReactElement | null => {
+
+interface AddTaskPanelProps {
+  childrenSwitch: boolean;
+  childrenSwitchType: PanelType;
+}
+
+const AddTaskPanel: React.FC<AddTaskPanelProps> = ({ childrenSwitch, childrenSwitchType }): React.ReactElement | null => {
   const [actualPanel, switchPanel] = useState<PanelType>(PanelType.hidden);
+
+  if (childrenSwitch) {
+    if (childrenSwitchType === PanelType.normalTask) switchPanel(PanelType.normalTask);
+    else if (childrenSwitchType === PanelType.importantTask) switchPanel(PanelType.importantTask);
+    else if (childrenSwitchType === PanelType.set) switchPanel(PanelType.set);
+    else switchPanel(PanelType.hidden);
+  } else {};
 
   return choosePicker(actualPanel);
 };
