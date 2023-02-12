@@ -16,15 +16,16 @@ const HomePage: React.FC<{}> = (): React.ReactElement => {
   const navigate: NavigateFunction = useNavigate();
   const authorizationToken = localStorage.getItem('authToken');
   // console.log(authorizationToken);
-  
-  const [click, setClick] = useState<boolean>(false);
+
+  // const [click, setClick] = useState<boolean>(false);
   const [formType, setFormType] = useState<PanelType>(PanelType.hidden);
 
   const handleFormSwitch = (e: EventTarget, typeName: PanelType) => {
-    setClick(!click);
-    setFormType(typeName);
+    if (formType > 0) {
+      setFormType(PanelType.hidden);
+    } else setFormType(typeName);
   };
-  
+
   useEffect(() => {
     const autoGetRequest = async () => {
       try {
@@ -49,7 +50,7 @@ const HomePage: React.FC<{}> = (): React.ReactElement => {
   return (
     <div className='HomePage'>
       <Sidebar handleChildrenClick={handleFormSwitch} />
-      <TaskContainer childrenSwitch={click} childrenSwitchType={formType} />
+      <TaskContainer childrenSwitchType={formType} />
     </div>
   );
 };

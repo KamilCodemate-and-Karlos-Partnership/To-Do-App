@@ -5,7 +5,7 @@ import axios from 'axios';
 import '../../assets/styles/HomePage.scss';
 import '../../assets/styles/TaskContainer.scss';
 import uniqid from 'uniqid';
-import TaskPanelContainer from './TaskPanelContainer';
+import AddTaskPanel from './AddTaskPanel';
 
 enum PanelType {
   hidden,
@@ -24,11 +24,10 @@ interface TaskDataStruture {
 }
 
 interface TaskContainerProps {
-  childrenSwitch: boolean;
   childrenSwitchType: PanelType;
 }
 
-const TaskContainer: React.FC<TaskContainerProps> = ({ childrenSwitch, childrenSwitchType }) : React.ReactElement => {
+const TaskContainer: React.FC<TaskContainerProps> = ({ childrenSwitchType }): React.ReactElement => {
   // const [taskData, modifyTasks] = useState<null | Array<object>>([]);
   const [taskData, modifyTasks] = useState<null | Array<TaskDataStruture>>([
     {
@@ -132,7 +131,7 @@ const TaskContainer: React.FC<TaskContainerProps> = ({ childrenSwitch, childrenS
 
   return (
     <div className='task-container'>
-      <TaskPanelContainer childrenSwitch={childrenSwitch} childrenSwitchType={childrenSwitchType} />
+      <AddTaskPanel childrenSwitchType={childrenSwitchType} />
       {Tasks}
     </div>
   );

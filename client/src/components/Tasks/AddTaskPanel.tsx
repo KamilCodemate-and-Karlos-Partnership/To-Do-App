@@ -20,7 +20,7 @@ enum PanelType {
   set,
 }
 const choosePicker = (panelType: PanelType): React.ReactElement | null => {
-   switch (panelType) {
+  switch (panelType) {
     case 0:
       return null;
     case 1:
@@ -28,28 +28,28 @@ const choosePicker = (panelType: PanelType): React.ReactElement | null => {
     case 2:
       return <TaskForm />;
     case 3:
-      return <TaskForm />
+      return <TaskForm />;
     default:
       return null;
   }
 };
 
 interface AddTaskPanelProps {
-  childrenSwitch: boolean;
   childrenSwitchType: PanelType;
 }
 
-const AddTaskPanel: React.FC<AddTaskPanelProps> = ({ childrenSwitch, childrenSwitchType }): React.ReactElement | null => {
-  const [actualPanel, switchPanel] = useState<PanelType>(PanelType.hidden);
+const AddTaskPanel: React.FC<AddTaskPanelProps> = ({ childrenSwitchType }): React.ReactElement | null => {
+  // const [actualPanel, switchPanel] = useState<PanelType>(PanelType.hidden);
 
-  if (childrenSwitch) {
-    if (childrenSwitchType === PanelType.normalTask) switchPanel(PanelType.normalTask);
-    else if (childrenSwitchType === PanelType.importantTask) switchPanel(PanelType.importantTask);
-    else if (childrenSwitchType === PanelType.set) switchPanel(PanelType.set);
-    else switchPanel(PanelType.hidden);
-  } else {};
+  // if (childrenSwitch) {
+  //   if (childrenSwitchType === PanelType.normalTask) switchPanel(PanelType.normalTask);
+  //   else if (childrenSwitchType === PanelType.importantTask) switchPanel(PanelType.importantTask);
+  //   else if (childrenSwitchType === PanelType.set) switchPanel(PanelType.set);
+  //   else switchPanel(PanelType.hidden);
+  // } else {
+  // }
 
-  return choosePicker(actualPanel);
+  return choosePicker(childrenSwitchType);
 };
 
 export default AddTaskPanel;
